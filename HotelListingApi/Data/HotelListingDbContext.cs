@@ -8,5 +8,48 @@ namespace HotelListingApi.Data
         {
             
         }
+        public DbSet<Hotel>Hotels { get; set; }
+        public DbSet<Country>Countries { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Country>().HasData(
+                new Country 
+                { 
+                Id= 1,
+                Name="zimbabwe",
+                ShortName = "ZW"
+                },
+                 new Country
+                 {
+                     Id = 2,
+                     Name = "south",
+                     ShortName = "SA"
+                 }
+
+                );
+
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Hotel>().HasData(
+                new Hotel
+                {
+                    Id = 1,
+                    Name = "zaniu",
+                    Address = "123 amisi",
+                    CountryId = 121,
+                    Rating = 3
+
+                },
+                 new Hotel
+                 {
+                     Id = 1,
+                     Name = "abwe",
+                     Address = "1zanui",
+                     CountryId = 121,
+                     Rating = 0
+                 }
+
+                );
+        }
     }
 }
